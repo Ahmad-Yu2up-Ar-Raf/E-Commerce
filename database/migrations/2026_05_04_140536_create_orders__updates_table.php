@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\OrderStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('transaction_id')->constrained()->onDelete('cascade');
-            $table->enum('status', ['proses','packing','delivering','finnish']);
+            $table->string('status')->default(OrderStatus::Packing->value) ;
         });
     }
 

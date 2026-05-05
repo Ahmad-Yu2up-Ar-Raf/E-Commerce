@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\PaymentsMethod;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,11 +15,12 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("product_name");
+            $table->string("name");
             $table->longText("desciption");
             $table->decimal('price', 20 , 4)->nullable();
-             $table->json('images');
-            $table->enum('payment_method', ['COD','Transfer']);
+            $table->json('thumnail_image');
+            $table->json('images');
+            $table->string('payment_method' )->default(PaymentsMethod::Transfer->value);
 
         });
     }
